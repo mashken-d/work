@@ -1,4 +1,4 @@
-package com.practice.work;
+package com.practice.work.models;
 
 public class Greeting {
     private final long id;
