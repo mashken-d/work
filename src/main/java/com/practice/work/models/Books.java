@@ -7,7 +7,7 @@ import java.time.Year;
 @Table(name= "books")
 public class Books {
     @Id
-    @GeneratedValue (strategy=GenerationType.IDENTITY)
+    @GeneratedValue (strategy=GenerationType.AUTO)
     private Long id;
 
     @Column
@@ -20,7 +20,7 @@ public class Books {
     private String author;
 
     @Column
-    private Year year;
+    private String year;
 
     @Column
     private String publisher;
@@ -31,7 +31,7 @@ public class Books {
     public Books() {
     }
 
-    public Books(Long id, Integer id_book, String name, String author, Year year, String publisher, String city_pud) {
+    public Books(Long id, Integer id_book, String name, String author, String year, String publisher, String city_pud) {
         this.id = id;
         this.id_book = id_book;
         this.name = name;
@@ -73,11 +73,11 @@ public class Books {
         this.author = author;
     }
 
-    public Year getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(Year year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
