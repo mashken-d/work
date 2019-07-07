@@ -30,4 +30,8 @@ public class IssueService {
     public void deleteById(Long id){
         issuerepos.deleteById(id);
     }
+
+    public List<Issue> getAllByReaderId (Long id) { return issuerepos.getAllByReaderId(id);}
+
+    public List<Issue> getAllByBookId (Long id) { return issuerepos.getAllByBookId(id);}
 }

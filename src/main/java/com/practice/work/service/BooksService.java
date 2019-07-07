@@ -19,12 +19,11 @@ public class BooksService {
         return bookrepos.findAll();
     }
 
-    public Optional<Books> findById(Long id){ return bookrepos.findById(id);
-    }
+    public Optional<Books> findById(Long id){ return bookrepos.findById(id); }
 
-    public Books save (Books s){
-        return bookrepos.save(s);
-    }
+    public List<Books> findByname(String name) { return bookrepos.findByname(name); }
+
+    public Books save (Books s){ return bookrepos.save(s); }
 
     public void deleteById(Long id){
         bookrepos.deleteById(id);

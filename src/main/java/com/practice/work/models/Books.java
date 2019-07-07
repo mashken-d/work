@@ -1,22 +1,23 @@
 package com.practice.work.models;
 
 import javax.persistence.*;
-import java.time.Year;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name= "books")
 public class Books {
+
     @Id
     @GeneratedValue (strategy=GenerationType.AUTO)
+    @Column(nullable = false, updatable = false)
     private Long id;
 
-    @Column
-    private Integer id_book;
-
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column
+    @Column(nullable = false)
     private String author;
 
     @Column
@@ -28,18 +29,22 @@ public class Books {
     @Column
     private String city_pub;
 
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
+//    private Set<Issue> issues = new HashSet<Issue>();
+
+
     public Books() {
     }
 
-    public Books(Long id, Integer id_book, String name, String author, String year, String publisher, String city_pud) {
-        this.id = id;
-        this.id_book = id_book;
+    public Books( String name, String author, String year, String publisher, String city_pud) {
+
         this.name = name;
         this.author = author;
         this.year = year;
         this.publisher = publisher;
         this.city_pub = city_pud;
     }
+
 
     public Long getId() {
         return id;
@@ -49,13 +54,13 @@ public class Books {
         this.id = id;
     }
 
-    public Integer getId_book() {
-        return id_book;
-    }
-
-    public void setId_book(Integer id_book) {
-        this.id_book = id_book;
-    }
+//    public Integer getId_book() {
+//        return id_book;
+//    }
+//
+//    public void setId_book(Integer id_book) {
+//        this.id_book = id_book;
+//    }
 
     public String getName() {
         return name;
@@ -97,8 +102,16 @@ public class Books {
         this.city_pub = city_pub;
     }
 
+//    public Set<Issue> getIssues () {
+//        return this.issues;
+//    }
+//
+//    public void setIssues (Set<Issue> issues) {
+//        this.issues = issues;
+//    }
+
     @Override
     public String toString(){
-        return "Books [ID="+id_book+", Name:"+name+", Year:"+year+", Publisher:"+publisher+", City:"+id_book+"]";
+        return "Books [ID=Name:"+name+", Year:"+year+", Publisher:"+publisher+", City:"+city_pub+"]";
     }
 }

@@ -5,14 +5,13 @@ import javax.persistence.*;
 @Entity
 @Table(name = "readers")
 public class Readers {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(updatable = false, nullable = false)
     private Long id;
 
-    @Column
-    private Integer id_card;
-
-    @Column
+    @Column(nullable = false)
     private String fl_name;
 
     @Column
@@ -21,11 +20,17 @@ public class Readers {
     @Column
     private String phone;
 
-    public Readers() {
-    }
+    @Column(name = "id_card", nullable = false)
+    private Integer id_card;
 
-    public Readers(Long id, Integer id_card, String fl_name, String address, String phone) {
-        this.id = id;
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "reader")
+//    private Set<Issue> issues = new HashSet<Issue>();
+
+
+    public Readers() {}
+
+    public Readers( Integer id_card, String fl_name, String address, String phone) {
+
         this.id_card = id_card;
         this.fl_name = fl_name;
         this.address = address;
@@ -71,4 +76,13 @@ public class Readers {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+//    public Set<Issue> getIssues () {
+//        return this.issues;
+//    }
+//
+//    public void setIssues (Set<Issue> issues) {
+//        this.issues = issues;
+//    }
+
 }

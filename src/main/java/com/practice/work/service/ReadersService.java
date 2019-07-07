@@ -23,6 +23,8 @@ public class ReadersService {
         return readersrepos.findById(id);
     }
 
+    public List<Readers> findByfl_name(String fl_name) { return readersrepos.findByfl_name(fl_name);}
+
     public Readers save (Readers s){
         return readersrepos.save(s);
     }
