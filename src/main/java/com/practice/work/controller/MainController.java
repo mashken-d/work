@@ -27,27 +27,32 @@ public class MainController {
     private IssueRepository issueRepository;
 
     @GetMapping("/books")
+    @CrossOrigin(origins = "http://localhost:4200")
     public List<Books> getAllBooks(){
         return booksServ.findAll();
     }
 
     @GetMapping("/books/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Books> getBooksById(@PathVariable(value = "id") Long booksId) throws ResourceNotFoundException {
         Books book = booksServ.findById(booksId).orElseThrow(() -> new ResourceNotFoundException("Book not found for this id :: " + booksId));
         return ResponseEntity.ok().body(book);
     }
 
-    @PostMapping("/books")
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/booksadd")
     public Books createBooks(@Valid @RequestBody Books books){
         return booksServ.save(books);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/booksname")
     public List filter (@RequestParam String text){
         List<Books> books = booksServ.findByname(text);
         return books; //what return!!!
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/books/{id}")
     public  ResponseEntity<Books> updateBooks(@PathVariable(value = "id") Long booksId, @Valid @RequestBody Books booksDetails) throws ResourceNotFoundException {
         Books books = booksServ.findById(booksId).orElseThrow(() -> new ResourceNotFoundException("Book not found for this id :: " + booksId));
@@ -62,6 +67,7 @@ public class MainController {
         return ResponseEntity.ok(updateBook);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("/books/{id}")
     public Map<String,Boolean> deleteBooks(@PathVariable(value = "id") Long booksId) throws ResourceNotFoundException {
         //Books books = booksServ.findById(booksId).orElseThrow(()-> new ResourceNotFoundException("Book not found for this id :: "  + booksId));
@@ -75,17 +81,20 @@ public class MainController {
     @Autowired
     private IssueService issueServ;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/issue")
     public List<Issue> getAllIssue(){
         return issueServ.findAll();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/issue/{id}")
     public ResponseEntity<Issue> getIssueById(@PathVariable(value = "id") Long issueId) throws ResourceNotFoundException {
         Issue issue = issueServ.findById(issueId).orElseThrow(() -> new ResourceNotFoundException("Issue not found for this id :: " + issueId));
         return ResponseEntity.ok().body(issue);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/issue")
     public Issue createIssue(@Valid @RequestBody Issue issue)throws ResourceNotFoundException {
 
@@ -100,6 +109,7 @@ public class MainController {
         return issueServ.save(issue);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/issue/{id}")
     public  ResponseEntity<Issue> updateIssue(@PathVariable(value = "id") Long issueId, @Valid @RequestBody Issue issueDetails) throws ResourceNotFoundException {
         Issue issue = issueServ.findById(issueId).orElseThrow(() -> new ResourceNotFoundException("Book not found for this id :: " + issueId));
@@ -113,6 +123,7 @@ public class MainController {
         return ResponseEntity.ok(updateIssue);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("/issue/{id}")
     public Map<String,Boolean> deleteIssue(@PathVariable(value = "id") Long issueId) {
         issueServ.deleteById(issueId);
@@ -121,12 +132,14 @@ public class MainController {
         return response;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/issuebybook/{id}", method = {RequestMethod.GET, RequestMethod.POST})
     public List<Issue> getAllIssueByBook(@PathVariable(value = "id") final Long id) {
         List<Issue> allByBookId = issueServ.getAllByBookId(id);
         return allByBookId;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/issuebyreader/{id}", method = RequestMethod.POST)
     public List<Issue> getAllIssueByReader(@PathVariable(value="id") final Long id) {
         List<Issue> allByReaderId = issueServ.getAllByReaderId(id);
@@ -136,22 +149,26 @@ public class MainController {
     @Autowired
     private ReadersService readersServ;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/readers")
     public List<Readers> getAllReaders(){
         return readersServ.findAll();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/readers/{id}")
     public ResponseEntity<Readers> getReaderById(@PathVariable(value = "id") Long readerId) throws ResourceNotFoundException {
         Readers reader = readersServ.findById(readerId).orElseThrow(() -> new ResourceNotFoundException("Reader not found for this id :: " + readerId));
         return ResponseEntity.ok().body(reader);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/readers")
     public Readers createReader(@Valid @RequestBody Readers reader){
         return readersServ.save(reader);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/readers/{id}")
     public  ResponseEntity<Readers> updateReader(@PathVariable(value = "id") Long readerId, @Valid @RequestBody Readers readerDetails) throws ResourceNotFoundException {
         Readers reader = readersServ.findById(readerId).orElseThrow(() -> new ResourceNotFoundException("Book not found for this id :: " + readerId));
@@ -164,6 +181,7 @@ public class MainController {
         return ResponseEntity.ok(updateReader);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("/readers/{id}")
     public Map<String,Boolean> deleteReader(@PathVariable(value = "id") Long readerId) {
         readersServ.deleteById(readerId); //!!! must be books, not booksId
@@ -173,6 +191,7 @@ public class MainController {
     }
 
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/readersname")
     public List filterReader (@RequestParam String name){
         List<Readers> reader = readersServ.findByfl_name(name);
