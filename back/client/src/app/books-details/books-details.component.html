@@ -1,0 +1,25 @@
+<div *ngIf="book">
+    <div>
+        <label>Название: </label> {{book.name}}
+    </div>
+    <div>
+        <label>Автор: </label> {{book.author}}
+    </div>
+    <div>
+        <label>Год:</label> {{book.year}}
+    </div>
+    <div>
+        <label>Издательство: </label> {{book.publisher}}
+    </div>
+    <div>
+        <label>Город издательства: </label> {{book.pub_city}}
+    </div>
+
+    <div>
+            <label>ТЕЕЕЕЕСТЙЙЙЙ: </label> {{book.pub_city}}
+        </div>
+
+    <span class="button is-small btn-danger" (click)='deleteBook()'>Удалить</span>
+
+    <hr/>
+</div>

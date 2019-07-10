@@ -1,0 +1,37 @@
+<h3>Добавить книгу</h3>
+<div [hidden]="submitted" style="width: 400px;">
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name">Название</label>
+            <input type="text" class="form-control" id="name" required [(ngModel)]="book.name" name="name">
+        </div>
+        <div [hidden]="!name.pristine" class="alert alert-danger">Введите имя</div>
+
+        <div class="form-group">
+            <label for="author">Автор</label>
+            <input type="text" class="form-control" id="author" required [(ngModel)]="book.author" name="author">
+        </div>
+        <div [hidden]="!author.pristine" class="alert alert-danger">Введите имя</div>
+
+        <div class="form-group">
+            <label for="year">Год</label>
+            <input type="text" class="form-control" id="year" required [(ngModel)]="book.year" name="year">
+        </div>
+
+        <div class="form-group">
+            <label for="publisher">Издательство</label>
+            <input type="text" class="form-control" id="publisher" required [(ngModel)]="book.publisher" name="publisher">
+        </div>
+
+        <div class="form-group">
+            <label for="pub_city">Город издания</label>
+            <input type="text" class="form-control" id="pub_city" required [(ngModel)]="book.pub_city" name="pub_city">
+        </div>
+
+        <button type="submit" class="btn btn-success">Добавить</button>
+    </form>
+</div>
+
+<div [hidden]="!submitted">
+    <h4>Успешно добавлено!</h4>
+</div>
